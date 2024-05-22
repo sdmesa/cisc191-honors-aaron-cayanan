@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #f5f5fa;
+}
+
+.header {
+    background-color: #f5f2f5;
+    padding: 20px;
+    text-align: center;
+    border: 5px solid #1f1f29;
+    border-radius: 8px;
+}
+
+h2 {
+    border-bottom: 1px solid black;
+}
+
+pre {
+    background-color: #31363F;
+    color: #f8f8f2;
+    max-width: 75%;
+    min-width: 50%;
+    overflow: auto;
+    border: 5px solid #1f1f29;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+img {
+    border: 5px solid #1f1f29;
+    max-width: 60%;
+    max-height: 60%;
+}
+
+table {
+    max-width: 60%;
+    background-color: white;
+    border: 5px solid #1f1f29;
+}
+
+th {
+    border:1px solid black;
+}
+
+.copy-btn {
+    position: absolute;
+    right: 30%;
+}
+
+p {
+    color: #1f1f29;
+}
+
+.terminal {
+    background-color: black;
+    color: white;
+    border-radius: 0;
+}
+
+.jersey-15-regular {
+    font-family: "Jersey 15", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

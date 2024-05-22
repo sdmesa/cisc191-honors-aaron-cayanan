@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shallow vs Deep Java</title>
+    <link rel="stylesheet" type="text/css" href="honstyl.css">
+    <script src="copy.js"></script>
+</head>
+
+
+<div class="header">
+    <h1>Shallow Copy vs Deep Copy in Java</h1>
+    <h4>Intermediate Java Programming Honors Project by Aaron Cayanan</h4>
+</div>
+
+<body>
+
+<div class="toc">
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#introhead">Introduction</a></li>
+        <li><a href="#whyhead">Why do we even need copies?</a></li>
+        <li><a href="#shallowhead">Shallow Copy</a></li>
+        <li><a href="#deephead">Deep Copy</a></li>
+        <li><a href="#thehow">How does this work?</a></li>
+        <li><a href="#conclusionhead">Conclusion</a></li>
+        <li><a href="#reference">References</a></li>
+    </ul>
+</div>
+
+<div class="thewhat">
+    <h2 id="introhead">Introduction</h2>
+    <p>When working with objects in Java, it is important to understand the difference between shallow and deep copies.
+        Before we get into the differences, we need to understand what an object is. In Java, an object is an instance
+        of a class and
+        is essential for use of attributes and methods of the class. <br> <br>
+        Consider the following example:
+    </p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Define a class named Car
+        public class Car {
+            // Attributes
+            String make;
+            String model;
+            int year;
+            String color;
+
+            // Constructor
+            public Car(String make, String model, int year, String color) {
+                this.make = make;
+                this.model = model;
+                this.year = year;
+                this.color = color;
+            }
+
+            // Method to drive the car
+            public void drive() {
+                System.out.println("Vroom vroom!");
+            }
+        }
+    </pre>
+    <p>In this example, we created a class named Car with instance variables 'brand', 'model', and 'year'. The class
+        has a constructor 'Car()' to initalize the instance variables when an object is created. We also created a
+        method
+        'drive()' that prints "Vroom vroom!" to the console when called. <br> <br>
+        Using this example, an object created with this class will consist of:
+    <ol>
+        <li>Identity: the unique name to an object that will be associated with the 'Car' class and is used to
+            distinguish it from other objects as well as interact with other objects.</li>
+        <li>State: which represents the attributes of an object, used to reflect the properties of the created object.
+        </li>
+        <li>Behavior: which represents the methods of the object, which is used to interact with other objects.</li>
+    </ol>
+    Example of an object: myCar
+    </p>
+    <table style="width:100%">
+        <tr>
+            <th>Identity</th>
+            <th>State/Attributes</th>
+            <th>Behavior</th>
+        </tr>
+        <tr>
+            <th>Name of Car</th>
+            <th>Make<br>
+                Model<br>
+                Year<br>
+                Color</th>
+            <th>
+                Drive
+            </th>
+        </tr>
+    </table>
+    <p>Essentially, objects serve as the connection between classes. A class functions as a blueprint outlining
+        the program's behavior and structure during execution. It incorporates all the instances and methods
+        that may be utilized within the program. On the other hand, objects encapsulate data utilized for
+        interaction with other objects.
+    </p>
+</div>
+
+<div class="thewhy">
+    <h2 id="whyhead">Why do we even need copies?</h2>
+    <p>Now that we understand objects and classes, why should we even bother with copies? <br>
+        There are many reasons as to why we may need to utilize copies in Java and object-oriented programming.
+        Some reasons include: <br>
+    <ul>
+        <li>Creating a backup of an object.</li>
+        <li>Creating a new object with the same attributes as another object.</li>
+        <li>Creating a new object with the same attributes as another object, but with different values.</li>
+        <br> or specific reasons like<br> <br>
+        <li>Managing a stock inventory system.</li>
+        <li>Duplicating initial conditions for independent outcomes.</li>
+        <li>Copying game saves or copies of save files without losing progress.</li>
+    </ul>
+    </p>
+</div>
+
+<div class="shallow">
+    <h2 id="shallowhead">Shallow Copy</h2>
+    <p>A shallow copy is a bit misleading. It is not a copy at all, but rather a reference to the original object.
+        When a shallow copy is made, the new object will point to the same memory location as the original object.
+        This means that any changes made to the new object will also affect the original object. <br> <br>
+        Consider the following example:
+    </p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Create a new object
+        Car originalCar = new Car("Lucid", "Air", 2024, "Space Gray");
+
+        // Create a shallow copy of the object
+        Car copyCar = originalCar;
+    </pre>
+    <p>When we create a shallow copy of 'originalCar', 'copyCar' will point to the same memory location as 'originalCar'.
+        This means that any changes made to 'copyCar' will also affect 'originalCar'.
+        This is useful when we want to create a new object with the same attributes as another object, but we need to
+        be careful when making changes to the new object.
+    </p>
+    <p>Let's see it in action. The following code will be the getter and setter methods for the color of the Car class.</p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Getter method for the color attribute
+        public String getColor() {
+            return color;
+        }
+
+        // Setter method for the color attribute
+        public void setColor(String color) {
+            this.color = color;
+        }
+    </pre>
+    <p>Now, in our main method, let's change the color of the 'copyCar' object. After, we'll check the color of both car classes, and print them to the terminal.</p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Change the color of the copyCar object
+        copyCar.setColor("Red");
+
+        // Print the color of both car objects
+        System.out.println("Original Car Color: " + originalCar.getColor());
+        System.out.println("Copy Car Color: " + copyCar.getColor());
+    </pre>
+    <p>The terminal will print:</p>
+    <pre class="terminal jersey-15-regular">
+
+        Original Car Color: Red
+        Copy Car Color: Red
+    </pre>
+    <p>As we can see, the color of both car objects changed to red. This is because 'copyCar' is a shallow copy of 'originalCar', and any changes made to 'copyCar' will also affect 'originalCar'.</p>
+</div>
+
+<div class="deep">
+    <h2 id="deephead">Deep Copy</h2>
+    <p>A deep copy is a true copy of the original object. When a deep copy is made, a new object is created with the same attributes as the original object, but with a different memory location. This means that any changes made to the new object will not affect the original object. <br> <br>
+        Consider the following example:
+    </p>
+    <pre>
+                <button class="copy-btn">Copy</button>
+
+        // Create a new object
+        Car originalCar = new Car("Lucid", "Air", 2024, "Space Gray");
+
+        // Create a deep copy of the object
+        Car copyCar = new Car(originalCar.getMake(), originalCar.getModel(), originalCar.getYear(), originalCar.getColor());
+    </pre>
+    <p>When we create a deep copy of 'originalCar', 'copyCar' will be a new object with the same attributes as 'originalCar', but with a different memory location. This means that any changes made to 'copyCar' will not affect 'originalCar'. <br> <br>
+        Let's see it in action. The following code will be the getter and setter methods for the color of the Car class.</p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Getter method for the color attribute
+        public String getColor() {
+            return color;
+        }
+
+        // Setter method for the color attribute
+        public void setColor(String color) {
+            this.color = color;
+        }
+    </pre>
+    <p>Now, in our main method, let's change the color of the 'copyCar' object. After, we'll check the color of both car classes, and print them to the terminal.</p>
+    <pre>
+        <button class="copy-btn">Copy</button>
+
+        // Change the color of the copyCar object
+        copyCar.setColor("Red");
+
+        // Print the color of both car objects
+        System.out.println("Original Car Color: " + originalCar.getColor());
+        System.out.println("Copy Car Color: " + copyCar.getColor());
+    </pre>
+    <p>The terminal will print:</p>
+    <pre class="terminal jersey-15-regular">
+
+            Original Car Color: Space Gray
+            Copy Car Color: Red
+    </pre>
+    <p>As we can see, the color of 'copyCar' changed to red, but the color of 'originalCar' remained the same. This is because 'copyCar' is a deep copy of 'originalCar', and any changes or maniplation to 'copyCar' will remain independent as it is its own object in a separate memory location.</p>
+</div>
+
+<div class="how">
+    <h2 id="thehow">How does this work?</h2>
+    <p>As mentioned earlier, shallow copies are references to the same memory location to the original object, and deep copies allocate a new object with the same attributes at a different memory location.
+        This is done by using the 'new' keyword. Using the 'new' keyword allocates memory for a new object.
+    </p>
+    <h3>Deep Copy Example Diagram</h3>
+    <p>Below is an example of a diagram on how object attributes are deep copied over using the 'new' keyword. In this example, the 'copyCar.setColor("Red")' method was called. as you can see, the memory address for color is different for each object. This allows for separate colors to be held at different memory locations as each object is now a separate instance of a class.</p>
+    <img src="assets/deepcopy.jpg" alt="Deep Copy">
+    <h3>Shallow Copy Example Diagram</h3>
+    <p>Now let's take a look at how memory allocation differs for shallow copies. Below is an example on how object attributes are referenced to the original object using a shallow copy. In this example, the 'copyCar.setColor("Red") method has also been called. Notice how the memory addresses are the same. This is because shallow copies are references to the original object, in this case 'originalCar'. This is why the color attribute has been set to red for both car objects.</p>
+    <img src="assets/shallowcopy.jpg" alt="Shallow Copy">
+</div>
+
+<div class="conclusion">
+    <h2 id="conclusionhead">Conclusion</h2>
+    <p>Shallow and deep copies are important concepts to understand when working with objects in Java. Shallow copies are references to the original object, while deep copies are true copies of the original object. When making changes to a shallow copy, the original object will also be affected, while changes to a deep copy will not affect the original object. <br> <br>
+        It is important to know when to use shallow and deep copies in your programs. Shallow copies are useful when you want to create a new object with the same attributes as another object, but you need to be careful when making changes to the new object. Deep copies are useful when you want to create a new object with the same attributes as another object, but you want to make changes to the new object without affecting the original object. <br> <br>
+        In conclusion, understanding the differences between shallow and deep copies will help you create more efficient and effective programs in Java.
+    </p>
+</div>
+
+<div class="video">
+    <h2 id="embedvideo">Video</h2>
+    <p>Watch this video for a visual explanation!</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/QaCYMgyprtc?si=bH5RBQY4ugJfkqRF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="references">
+    <h2 id="reference">List of References:</h2>
+    <ul>
+        <li><a
+                href="https://www.geeksforgeeks.org/classes-objects-java/?ref=header_search">https://www.geeksforgeeks.org/classes-objects-java/?ref=header_search</a>
+        </li>
+        <li><a
+                href="https://marcus-biel.com/java-course-introduction/">https://marcus-biel.com/java-course-introduction/</a>
+        </li>
+        <li><a
+                href="https://www.geeksforgeeks.org/difference-between-shallow-and-deep-copy-of-a-class/">https://www.geeksforgeeks.org/difference-between-shallow-and-deep-copy-of-a-class/</a>
+        </li>
+        <li>
+            <a href="https://www.studytonight.com/java-examples/how-to-make-a-deep-copy-of-an-object-in-java#:~:text=A%20deep%20copy%20will%20create,as%20no%20references%20are%20involved.">https://www.studytonight.com/java-examples/how-to-make-a-deep-copy-of-an-object-in-java#:~:text=A%20deep%20copy%20will%20create,as%20no%20references%20are%20involved.</a>
+        </li>
+        <li>
+            <a href="https://www.javatpoint.com/new-keyword-in-java#:~:text=The%20Java%20new%20keyword%20is,to%20create%20the%20array%20object.">https://www.javatpoint.com/new-keyword-in-java#:~:text=The%20Java%20new%20keyword%20is,to%20create%20the%20array%20object.</a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/watch?v=QaCYMgyprtc">https://www.youtube.com/watch?v=QaCYMgyprtc</a>
+        </li>
+    </ul>
+</div>
+    <script src="copy.js"></script>
+
+</body>
+</html>
