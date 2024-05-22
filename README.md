@@ -1,5 +1,5 @@
-[GitHub Pages](https://sdmesa.github.io/cisc191-honors-aaron-cayanan/)<br>
-[Aaron Cayanan Portfolio](https://aaroncayanan.com/shallowdeepjava/)
+# [GitHub Pages](https://sdmesa.github.io/cisc191-honors-aaron-cayanan/)<br>
+# [Aaron Cayanan Portfolio](https://aaroncayanan.com/shallowdeepjava/)
 
 NOTES FROM THE PROGRAMMER:
 Thank you for viewing my honors project for the Intermediate Java class at Mesa College. This project is intended to give
